@@ -1,0 +1,3 @@
+name: HoneyNetwork
+version: '${project.version}'
+main: fun.mcbee.bungee.honeynetwork.HoneyNetwork
