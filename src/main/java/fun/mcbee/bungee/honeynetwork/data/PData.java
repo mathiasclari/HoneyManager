@@ -28,7 +28,7 @@ public class PData {
     public PData(final UUID uuid) {
         this.uuid = uuid;
         this.joinTime = Long.valueOf(System.currentTimeMillis());
-        BungeeCord.getInstance().getScheduler().runAsync((Plugin) HoneyNetwork.getInstance(), new Runnable() {
+        BungeeCord.getInstance().getScheduler().runAsync((Plugin)HoneyNetwork.getInstance(), new Runnable() {
             public void run() {
                 Statement stmt = null;
                 String query = "SELECT *, DATEDIFF(now(), LastLogin) as diff FROM networkmanagerdatabase where UUID = '" + uuid + "';";

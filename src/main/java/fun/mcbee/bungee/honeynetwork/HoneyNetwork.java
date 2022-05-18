@@ -60,7 +60,7 @@ public final class HoneyNetwork extends Plugin {
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendCommand("f"));
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendCommand("friend"));
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendsCommand());
-        BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new PlayTime());
+        BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command) new PlayTime());
         LoadData();
     }
 
