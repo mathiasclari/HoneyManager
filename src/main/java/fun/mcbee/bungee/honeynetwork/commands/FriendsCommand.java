@@ -1,4 +1,4 @@
-package fun.mcbee.bungee.honeynetwork.FriendsCommands;
+package fun.mcbee.bungee.honeynetwork.commands;
 
 import fun.mcbee.bungee.honeynetwork.HoneyNetwork;
 import fun.mcbee.bungee.honeynetwork.data.FInfo;

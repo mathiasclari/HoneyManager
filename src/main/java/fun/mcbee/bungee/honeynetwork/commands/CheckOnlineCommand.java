@@ -1,4 +1,4 @@
-package fun.mcbee.bungee.honeynetwork.AdminCommands;
+package fun.mcbee.bungee.honeynetwork.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;

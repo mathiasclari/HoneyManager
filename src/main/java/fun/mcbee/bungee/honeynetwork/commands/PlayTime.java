@@ -1,8 +1,8 @@
-package fun.mcbee.bungee.honeynetwork.AdminCommands;
+package fun.mcbee.bungee.honeynetwork.commands;
 
-import net.md_5.bungee.BungeeCord;
 import fun.mcbee.bungee.honeynetwork.HoneyNetwork;
 import fun.mcbee.bungee.honeynetwork.data.PData;
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -23,9 +23,9 @@ public class PlayTime extends Command {
                     String timeWeek = PData.GetTextTime(Long.valueOf(pd.GetSecondsWeekOnline()));
                     System.out.println(timeTotal + " " + timeWeek);
 
-                    p.sendMessage(new TextComponent(ChatColor.of("#FFBF00") + "Playtime: "));
-                    p.sendMessage(new TextComponent(ChatColor.of("#F28C28") + "Total: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeTotal));
-                    p.sendMessage(new TextComponent(ChatColor.of("#F28C28") + "Last Week: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeWeek));
+                    p.sendMessage((ChatColor.of("#FFBF00") + "Playtime: "));
+                    p.sendMessage((ChatColor.of("#F28C28") + "Total: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeTotal));
+                    p.sendMessage((ChatColor.of("#F28C28") + "Last Week: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeWeek));
                 }
             } else if (args.length == 1 &&
                     p.hasPermission("bee.bungee.admin")) {

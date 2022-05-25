@@ -1,15 +1,10 @@
 package fun.mcbee.bungee.honeynetwork;
 
 import com.google.common.io.ByteStreams;
-import fun.mcbee.bungee.honeynetwork.AdminCommands.CheckOnlineCommand;
-import fun.mcbee.bungee.honeynetwork.AdminCommands.PlayTime;
-import fun.mcbee.bungee.honeynetwork.FriendsCommands.FriendCommand;
-import fun.mcbee.bungee.honeynetwork.FriendsCommands.FriendsCommand;
-import fun.mcbee.bungee.honeynetwork.ManagerCommands.MaintenanceCommand;
-import fun.mcbee.bungee.honeynetwork.ProxySettings.BungeeSettings;
-import fun.mcbee.bungee.honeynetwork.ServerCommands.BuildServer;
-import fun.mcbee.bungee.honeynetwork.ServerCommands.HubCommand;
-import fun.mcbee.bungee.honeynetwork.StaffChat.StaffChatEvent;
+import fun.mcbee.bungee.honeynetwork.commands.*;
+import fun.mcbee.bungee.honeynetwork.listener.BungeeSettings;
+import fun.mcbee.bungee.honeynetwork.listener.PluginMessaging;
+import fun.mcbee.bungee.honeynetwork.listener.StaffChatEvent;
 import fun.mcbee.bungee.honeynetwork.Util.EventListener;
 import fun.mcbee.bungee.honeynetwork.data.FData;
 import fun.mcbee.bungee.honeynetwork.data.FInfo;
@@ -61,6 +56,9 @@ public final class HoneyNetwork extends Plugin {
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendCommand("friend"));
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendsCommand());
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command) new PlayTime());
+        BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command) new BanCommand());
+        BungeeCord.getInstance().registerChannel("nm:channel");
+        BungeeCord.getInstance().pluginManager.registerListener(this, new PluginMessaging(this));
         LoadData();
     }
 

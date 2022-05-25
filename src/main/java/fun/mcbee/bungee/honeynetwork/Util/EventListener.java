@@ -4,6 +4,7 @@ import fun.mcbee.bungee.honeynetwork.HoneyNetwork;
 import fun.mcbee.bungee.honeynetwork.data.FInfo;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -11,7 +12,10 @@ import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -131,4 +135,23 @@ public class EventListener implements Listener {
         return data;
     }
 
+    @EventHandler
+    public void OnTabCompleteEvent2(TabCompleteEvent e) {
+        String[] args = e.getCursor().split(" ");
+        if(args.length == 1 || args.length == 2) {// /go play || /go .
+            if(e.getSender() instanceof ProxiedPlayer) {
+                ProxiedPlayer player = (ProxiedPlayer) e.getSender();
+                if((args[0].equals("/kick") || args[0].equals("/ban")) && player.hasPermission("NetworkManager.admin")) {
+                    String startsWith = (args.length == 1)?(""):(args[1].toLowerCase());
+                    e.getSuggestions().clear();
+                    for(ProxiedPlayer p : BungeeCord.getInstance().getPlayers()) {
+                        if(p.getName().toLowerCase().startsWith(startsWith) && !p.equals(player)) {
+                            e.getSuggestions().add(p.getName());
+                        }
+                    }
+                    Collections.sort(e.getSuggestions());
+                }
+            }
+        }
+    }
 }

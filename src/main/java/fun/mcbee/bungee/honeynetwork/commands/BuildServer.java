@@ -1,4 +1,4 @@
-package fun.mcbee.bungee.honeynetwork.ServerCommands;
+package fun.mcbee.bungee.honeynetwork.commands;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.CommandSender;

@@ -1,4 +1,4 @@
-package fun.mcbee.bungee.honeynetwork.StaffChat;
+package fun.mcbee.bungee.honeynetwork.listener;
 
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;

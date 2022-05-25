@@ -1,9 +1,10 @@
-package fun.mcbee.bungee.honeynetwork.FriendsCommands;
+package fun.mcbee.bungee.honeynetwork.commands;
 
 import fun.mcbee.bungee.honeynetwork.HoneyNetwork;
 import fun.mcbee.bungee.honeynetwork.Util.ChatUtilities;
 import fun.mcbee.bungee.honeynetwork.Util.Utilities;
 import fun.mcbee.bungee.honeynetwork.data.FInfo;
+
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;

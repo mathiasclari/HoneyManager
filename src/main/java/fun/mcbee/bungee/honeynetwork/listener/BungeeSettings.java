@@ -1,4 +1,4 @@
-package fun.mcbee.bungee.honeynetwork.ProxySettings;
+package fun.mcbee.bungee.honeynetwork.listener;
 
 import fun.mcbee.bungee.honeynetwork.HoneyNetwork;
 import net.md_5.bungee.api.ChatColor;
