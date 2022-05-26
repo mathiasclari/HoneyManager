@@ -41,7 +41,7 @@ public class PluginMessaging implements Listener {
         if(!e.getTag().equalsIgnoreCase("BungeeCord")) {
             return;
         }
-        e.setCancelled(true);
+
         ByteArrayDataInput in = ByteStreams.newDataInput(e.getData());
         String subChannel = in.readUTF();
         if(subChannel.equalsIgnoreCase("ban_information")) {
