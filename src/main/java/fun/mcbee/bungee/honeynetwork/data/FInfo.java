@@ -311,6 +311,10 @@ public class FInfo {
     public boolean DisplayFriendList(ProxiedPlayer player, int page) {
         int max = 6;
 
+        if(page < 0 && page > friendsUUIDs.size()/max) {
+            return false;
+        }
+
         net.md_5.bungee.api.chat.TextComponent line = new net.md_5.bungee.api.chat.TextComponent("———————————————————————————————————");
         line.setColor(ChatColor.DARK_GRAY);
         net.md_5.bungee.api.chat.TextComponent titleLeft = new net.md_5.bungee.api.chat.TextComponent("Friends List");
@@ -354,19 +358,19 @@ public class FInfo {
             }
         }
 
-        net.md_5.bungee.api.chat.TextComponent pageLeft = new net.md_5.bungee.api.chat.TextComponent("<<");
+        TextComponent pageLeft = new TextComponent("<<");
         pageLeft.setColor(ChatColor.YELLOW);
         if(page > 0) {
             pageLeft.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Back")));
             pageLeft.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friend " + (page - 1)));
         }
-        net.md_5.bungee.api.chat.TextComponent pageRight = new net.md_5.bungee.api.chat.TextComponent(">>");
+        TextComponent pageRight = new TextComponent(">>");
         pageRight.setColor(ChatColor.YELLOW);
         if(page < friendsUUIDs.size()/max) {
-            pageLeft.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Back")));
-            pageLeft.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friend " + (page + 1)));
+            pageRight.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Next")));
+            pageRight.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friend " + (page + 1)));
         }
-        net.md_5.bungee.api.chat.TextComponent pageMiddle = new net.md_5.bungee.api.chat.TextComponent("             -             ");
+        TextComponent pageMiddle = new TextComponent("             -             ");
         pageMiddle.setColor(ChatColor.GRAY);
 
         net.md_5.bungee.api.chat.TextComponent pageMessage = new net.md_5.bungee.api.chat.TextComponent();

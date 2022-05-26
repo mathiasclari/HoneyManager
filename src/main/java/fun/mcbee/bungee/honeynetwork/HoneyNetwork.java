@@ -11,6 +11,7 @@ import fun.mcbee.bungee.honeynetwork.data.FInfo;
 import fun.mcbee.bungee.honeynetwork.data.MYSQL;
 import fun.mcbee.bungee.honeynetwork.data.PData;
 import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Listener;
@@ -20,6 +21,9 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +38,9 @@ public final class HoneyNetwork extends Plugin {
     public static Map<UUID, FData> listFriendData = new HashMap<>();
 
     public static Map<UUID, PData> listPlayerData = new HashMap<>();
+    public static ChatColor successColor;
+    public static ChatColor errorColor;
+    public static Map<UUID, Long> bannedPlayers = new HashMap<UUID, Long>();
 
     public Configuration config;
 
@@ -63,6 +70,34 @@ public final class HoneyNetwork extends Plugin {
     }
 
     private void LoadData() {
+
+        BungeeCord.getInstance().getScheduler().runAsync(this, new Runnable() {
+            @Override
+            public void run() {
+                Statement stmt = null;
+                String query = "SELECT * FROM NetworkManagerBans WHERE time_ban_expires != 0;";
+                try {
+                    stmt = MYSQL.GetConnection().createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    while (rs.next()) {
+                        UUID uuid = UUID.fromString(rs.getString("uuid"));
+                        long time = rs.getLong("time_ban_expires");
+                        bannedPlayers.put(uuid, time);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if(stmt != null) {
+                        try {
+                            stmt.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
         GetDefaultConfig();
         String host = this.config.getString("mysql.host");
         String database = this.config.getString("mysql.databse");

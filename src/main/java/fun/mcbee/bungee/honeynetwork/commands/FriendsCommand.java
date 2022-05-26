@@ -17,11 +17,19 @@ public class FriendsCommand extends Command {
         if (sender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) sender;
             int len = args.length;
-            if (len == 0) {
+            if(len == 0) {
                 FInfo fi = HoneyNetwork.listFriendsInfos.get(player.getUniqueId());
-                if (fi != null) {
+                if(fi != null) {
                     fi.DisplayFriendList(player, 0);
                 }
+            } else if(len == 1) {
+                try {
+                    int pageNumber = Integer.parseInt(args[0]);
+                    FInfo fi = HoneyNetwork.listFriendsInfos.get(player.getUniqueId());
+                    if(fi != null) {
+                        fi.DisplayFriendList(player, pageNumber);
+                    }
+                } catch(Exception e) { }
             }
         }
     }

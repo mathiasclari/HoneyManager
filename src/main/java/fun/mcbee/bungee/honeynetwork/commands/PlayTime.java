@@ -27,8 +27,7 @@ public class PlayTime extends Command {
                     p.sendMessage((ChatColor.of("#F28C28") + "Total: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeTotal));
                     p.sendMessage((ChatColor.of("#F28C28") + "Last Week: " + ChatColor.of("#738291") + "" + ChatColor.of("#FAD5A5") + timeWeek));
                 }
-            } else if (args.length == 1 &&
-                    p.hasPermission("bee.bungee.admin")) {
+            } else if (args.length == 1 && p.hasPermission("bee.bungee.admin")) {
                 ProxiedPlayer player = BungeeCord.getInstance().getPlayer(args[0]);
                 if (player != null) {
                     PData pd = HoneyNetwork.listPlayerData.get(player.getUniqueId());
