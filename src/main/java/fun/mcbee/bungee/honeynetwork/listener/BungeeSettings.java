@@ -18,7 +18,8 @@ public class BungeeSettings implements Listener {
         if(HoneyNetwork.maintenance == true) {
             serverPing.setVersion(new ServerPing.Protocol("Under Maintenance", 1));
         }else{
-            serverPing.setVersion(new ServerPing.Protocol(ChatColor.GOLD+"discord.gg/acticraft", 1));
+            ServerPing.Protocol pro = new ServerPing.Protocol(ChatColor.GOLD+"discord.gg/acticraft", e.getConnection().getVersion());
+            e.getResponse().setVersion(pro);
         }
         e.setResponse(serverPing);
 
@@ -31,13 +32,6 @@ public class BungeeSettings implements Listener {
             if(!e.getPlayer().hasPermission("acs.staff.maintenance")) {
                 e.getPlayer().disconnect(ChatColor.of("#FFE29F") + "       Server is currently under" + ChatColor.BOLD + " Maintenance" + ChatColor.of("#FFE29F") + " !" + "\n" + ChatColor.of("#755a3e") + " " + ChatColor.BOLD + "Join our Discord for more info! discord.gg/acticraft");
             }
-
-        }
-    }
-
-    @EventHandler
-    public void checkFabric(PostLoginEvent e){
-        if(e.getPlayer().isForgeUser()){
 
         }
     }
