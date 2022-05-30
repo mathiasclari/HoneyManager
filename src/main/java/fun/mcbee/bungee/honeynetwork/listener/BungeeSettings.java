@@ -13,12 +13,12 @@ public class BungeeSettings implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPing(ProxyPingEvent e){
         ServerPing serverPing = e.getResponse();
-        serverPing.setDescription(ChatColor.of("#FFE29F")+"       Welcome to the"+ChatColor.BOLD+" ActiCraft Network"+ChatColor.of("#FFE29F")+" !"+"\n"+ChatColor.of("#755a3e")+"                "+ChatColor.BOLD+"play.acticraft.net");
+        serverPing.setDescription(ChatColor.of("#FFE29F")+"       Welcome to the"+ChatColor.BOLD+" McBee Network"+ChatColor.of("#FFE29F")+" !"+"\n"+ChatColor.of("#755a3e")+"                "+ChatColor.BOLD+"play.acticraft.net");
         serverPing.getPlayers().setMax(2000);
         if(HoneyNetwork.maintenance == true) {
             serverPing.setVersion(new ServerPing.Protocol("Under Maintenance", 1));
         }else{
-            ServerPing.Protocol pro = new ServerPing.Protocol(ChatColor.GOLD+"discord.gg/acticraft", e.getConnection().getVersion());
+            ServerPing.Protocol pro = new ServerPing.Protocol(ChatColor.GOLD+"discord.gg/McBee", e.getConnection().getVersion());
             e.getResponse().setVersion(pro);
         }
         e.setResponse(serverPing);
