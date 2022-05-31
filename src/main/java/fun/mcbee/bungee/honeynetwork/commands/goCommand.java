@@ -12,6 +12,7 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class goCommand extends Command {
 
+
     public goCommand() {
         super("go");
     }
@@ -19,6 +20,8 @@ public class goCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (sender instanceof ProxiedPlayer) {
+            if (sender.hasPermission("bee.server.admin")) {
+
             if(args.length == 1) {
                 String serverName = args[0];
                 if(HoneyNetwork.getInstance().getProxy().getServerInfo(serverName) != null) {
@@ -39,6 +42,7 @@ public class goCommand extends Command {
                 }
             } else {
                 ((ProxiedPlayer) sender).sendMessage(new TextComponent("Command /go <server>"));
+                }
             }
         }
     }

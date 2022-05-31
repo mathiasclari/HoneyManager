@@ -60,7 +60,7 @@ public class BanCommand extends Command {
                                         if(uuid != null) {
                                             RunBanCommand(args, player, uuid, name, "");
                                         } else {
-                                            TextComponent tc = new TextComponent("User never joied the network!");
+                                            TextComponent tc = new TextComponent("User never joined the network!");
                                             tc.setColor(HoneyNetwork.errorColor);
                                             player.sendMessage(tc);
                                         }
@@ -103,7 +103,7 @@ public class BanCommand extends Command {
                                         if(uuid != null) {
                                             RunBanCommand(args, player, uuid, name, "");
                                         } else {
-                                            TextComponent tc = new TextComponent("User never joied the network!");
+                                            TextComponent tc = new TextComponent("User never joined the network!");
                                             tc.setColor(HoneyNetwork.errorColor);
                                             player.sendMessage(tc);
                                         }
