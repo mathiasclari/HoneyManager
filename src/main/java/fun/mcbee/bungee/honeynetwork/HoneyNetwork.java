@@ -72,6 +72,15 @@ public final class HoneyNetwork extends Plugin {
 
     private void LoadData() {
 
+        GetDefaultConfig();
+        String host = this.config.getString("mysql.host");
+        String database = this.config.getString("mysql.databse");
+        String username = this.config.getString("mysql.username");
+        String password = this.config.getString("mysql.password");
+        int port = this.config.getInt("mysql.port");
+        MYSQL.Login(host, database, username, password, port);
+        MYSQL.CreateTables();
+
         BungeeCord.getInstance().getScheduler().runAsync(this, new Runnable() {
             @Override
             public void run() {
@@ -82,6 +91,7 @@ public final class HoneyNetwork extends Plugin {
                     ResultSet rs = stmt.executeQuery(query);
                     while (rs.next()) {
                         UUID uuid = UUID.fromString(rs.getString("uuid"));
+                        System.out.println(uuid.toString());
                         long time = rs.getLong("time_ban_expires");
                         bannedPlayers.put(uuid, time);
                     }
@@ -98,15 +108,6 @@ public final class HoneyNetwork extends Plugin {
                 }
             }
         });
-
-        GetDefaultConfig();
-        String host = this.config.getString("mysql.host");
-        String database = this.config.getString("mysql.databse");
-        String username = this.config.getString("mysql.username");
-        String password = this.config.getString("mysql.password");
-        int port = this.config.getInt("mysql.port");
-        MYSQL.Login(host, database, username, password, port);
-        MYSQL.CreateTables();
     }
 
     void GetDefaultConfig() {
