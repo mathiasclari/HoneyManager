@@ -2,9 +2,7 @@ package fun.mcbee.bungee.honeynetwork;
 
 import com.google.common.io.ByteStreams;
 import fun.mcbee.bungee.honeynetwork.commands.*;
-import fun.mcbee.bungee.honeynetwork.listener.BungeeSettings;
 import fun.mcbee.bungee.honeynetwork.listener.PluginMessaging;
-import fun.mcbee.bungee.honeynetwork.listener.StaffChatEvent;
 import fun.mcbee.bungee.honeynetwork.Util.EventListener;
 import fun.mcbee.bungee.honeynetwork.data.FData;
 import fun.mcbee.bungee.honeynetwork.data.FInfo;
@@ -31,8 +29,6 @@ import java.util.UUID;
 
 public final class HoneyNetwork extends Plugin {
 
-    public static boolean maintenance = false;
-
     public static Map<UUID, FInfo> listFriendsInfos = new HashMap<>();
 
     public static Map<UUID, FData> listFriendData = new HashMap<>();
@@ -52,12 +48,9 @@ public final class HoneyNetwork extends Plugin {
 
     public void onEnable() {
         plugin = this;
-        ProxyServer.getInstance().getPluginManager().registerListener(this, (Listener)new BungeeSettings());
         ProxyServer.getInstance().getPluginManager().registerListener(this, new EventListener(this));
-        ProxyServer.getInstance().getPluginManager().registerListener(this, (Listener)new StaffChatEvent());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, (Command)new HubCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, (Command)new CheckOnlineCommand());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, (Command)new MaintenanceCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, (Command)new BuildServer());
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendCommand("f"));
         BungeeCord.getInstance().getPluginManager().registerCommand(this, (Command)new FriendCommand("friend"));
